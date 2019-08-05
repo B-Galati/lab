@@ -1,2 +1,3 @@
-# lab
-Testing stuff
+# Lab
+
+- [Testing stuff with snc/redis-bnudle](tests-snc-redis-bundle)
