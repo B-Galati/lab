@@ -1,0 +1,52 @@
+version: "3.7"
+
+networks:
+  redisnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.0.0/16
+
+services:
+  redis:
+    image: redis:4
+    volumes:
+      - ./redis.conf:/etc/redis/redis.conf
+#    command: redis-server /etc/redis/redis.conf
+    command: redis-server
+    ports:
+      - 6379:6379
+
+# See https://github.com/itsmetommy/docker-redis-cluster to run redis cluster
+  redis-cluster-1:
+    image: redis:5
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - ./redis-cluster-1.conf:/etc/redis/redis.conf
+    ports:
+      - 7000:7000
+    networks:
+      redisnet:
+        ipv4_address: 10.0.0.2
+
+  redis-cluster-2:
+    image: redis:5
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - ./redis-cluster-2.conf:/etc/redis/redis.conf
+    ports:
+      - 7001:7001
+    networks:
+      redisnet:
+        ipv4_address: 10.0.0.3
+
+  redis-cluster-3:
+    image: redis:5
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - ./redis-cluster-3.conf:/etc/redis/redis.conf
+    ports:
+      - 7002:7002
+    networks:
+      redisnet:
+        ipv4_address: 10.0.0.4

@@ -1,0 +1,49 @@
+snc_redis:
+  clients:
+    cluster:
+      type: phpredis
+      alias: cluster
+      dsn: ["redis://%env(REDIS_CLUSTER_URL)%/0"]
+      logging: '%kernel.debug%'
+      options:
+        cluster: true
+#        replication: false
+
+    default:
+      type: phpredis
+      alias: default
+      dsn: '%env(REDIS_URL)%'
+#      dsn:
+#        - "%env(REDIS_URL)%/0"
+#        - "%env(REDIS_URL)%/1"
+      logging: '%kernel.debug%'
+#      logging: false
+      options:
+        read_write_timeout: 9
+        cluster: true
+#        replication: true
+#        cluster: Snc\RedisBundle\Client\Predis\Connection\PredisCluster
+#        connection_async:     false
+#        connection_persistent: false
+#        connection_timeout:   5
+#        iterable_multibulk:   false
+#        throw_errors:         true
+#        serialization:        default
+#        profile:              default
+#        prefix:               null
+#        service:              null
+#        parameters:
+#            database:             null
+#            password:             null
+#            logging:              true
+
+    predis:
+      type: predis
+      alias: predis
+      dsn: "%env(REDIS_URL)%/3"
+      logging: '%kernel.debug%'
+
+  session:
+    client: default
+    prefix: benoit
+    ttl: 1200

@@ -1,0 +1,35 @@
+security:
+    encoders:
+#        App\Entity\User: plaintext
+        Symfony\Component\Security\Core\User\User: plaintext
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+#        entity_provider:
+#            entity:
+#                class: 'App\Entity\User'
+        in_memory:
+            memory:
+                users:
+                    benoit:
+                        password: 'benoit'
+                        roles: ['ROLE_USER']
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            provider: in_memory
+            logout:
+                path: app_logout
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                csrf_parameter: _csrf_token
+                csrf_token_id: authenticate
+                username_parameter: username
+                password_parameter: password
+
+    access_control:
+         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
