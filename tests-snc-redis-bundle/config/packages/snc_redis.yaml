@@ -3,7 +3,10 @@ snc_redis:
     cluster:
       type: phpredis
       alias: cluster
-      dsn: ["redis://%env(REDIS_CLUSTER_URL)%/0"]
+      dsn:
+        - 'redis://%env(REDIS_CLUSTER_URL_1)%'
+#        - 'redis://%env(REDIS_CLUSTER_URL_2)%'
+#        - 'redis://%env(REDIS_CLUSTER_URL_3)%'
       logging: '%kernel.debug%'
       options:
         cluster: true
@@ -42,6 +45,20 @@ snc_redis:
       alias: predis
       dsn: "%env(REDIS_URL)%/3"
       logging: '%kernel.debug%'
+
+    predis_cluster:
+      type: predis
+      alias: predis_cluster
+#      logging: '%kernel.debug%'
+      logging: false
+      options:
+        cluster: redis
+#        cluster: Snc\RedisBundle\Client\Predis\Connection\PredisCluster
+        replication: false
+      dsn:
+        - 'redis://%env(REDIS_CLUSTER_URL_1)%' #/3?weight=10
+        - 'redis://%env(REDIS_CLUSTER_URL_2)%' #/4?weight=5
+        - 'redis://%env(REDIS_CLUSTER_URL_3)%' #/5?weight=1
 
   session:
     client: default
