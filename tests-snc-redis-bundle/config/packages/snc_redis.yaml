@@ -5,11 +5,14 @@ snc_redis:
       alias: cluster
       dsn:
         - 'redis://%env(REDIS_CLUSTER_URL_1)%'
-#        - 'redis://%env(REDIS_CLUSTER_URL_2)%'
-#        - 'redis://%env(REDIS_CLUSTER_URL_3)%'
+        - 'redis://%env(REDIS_CLUSTER_URL_2)%'
+        - 'redis://%env(REDIS_CLUSTER_URL_3)%'
       logging: '%kernel.debug%'
       options:
         cluster: true
+        connection_persistent: true
+        read_write_timeout: 1.5
+        connection_timeout: 1.5
 #        replication: false
 
     default:
@@ -23,7 +26,7 @@ snc_redis:
 #      logging: false
       options:
         read_write_timeout: 9
-        cluster: true
+#        cluster: true
 #        replication: true
 #        cluster: Snc\RedisBundle\Client\Predis\Connection\PredisCluster
 #        connection_async:     false

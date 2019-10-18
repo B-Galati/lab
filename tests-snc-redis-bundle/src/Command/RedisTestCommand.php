@@ -13,8 +13,9 @@ class RedisTestCommand extends RedisBaseCommand
      */
     protected function executeRedisCommand()
     {
-        /** @var \RedisCluster $client */
+        /** @var \RedisCluster|\Redis $client */
         $client = $this->redisClient;
+        dump($client);
         dump(get_class($client));
         dump($client->set('test', 1));
         dump($client->get('test'));
