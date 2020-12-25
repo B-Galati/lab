@@ -6,18 +6,18 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "predis/predis": "^1.1",
-        "snc/redis-bundle": "^2.1",
-        "symfony/console": "4.3.*",
+        "snc/redis-bundle": "^3.1",
+        "symfony/console": "4.4.*",
         "symfony/debug-pack": "^1.0",
-        "symfony/dotenv": "4.3.*",
+        "symfony/dotenv": "4.4.*",
         "symfony/flex": "^1.1",
-        "symfony/framework-bundle": "4.3.*",
+        "symfony/framework-bundle": "4.4.*",
         "symfony/maker-bundle": "^1.11",
         "symfony/monolog-bundle": "^3.3",
         "symfony/orm-pack": "^1.0",
         "symfony/profiler-pack": "^1.0",
-        "symfony/security-bundle": "4.3.*",
-        "symfony/yaml": "4.3.*"
+        "symfony/security-bundle": "4.4.*",
+        "symfony/yaml": "4.4.*"
     },
     "config": {
         "preferred-install": {
@@ -61,7 +61,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "4.3.*"
+            "require": "4.4.*"
         }
     }
 }

@@ -9,7 +9,7 @@ networks:
 
 services:
   redis:
-    image: redis:4
+    image: redis:6
     volumes:
       - ./redis.conf:/etc/redis/redis.conf
 #    command: redis-server /etc/redis/redis.conf
@@ -19,7 +19,7 @@ services:
 
 # See https://github.com/itsmetommy/docker-redis-cluster to run redis cluster
   redis-cluster-1:
-    image: redis:5
+    image: redis:6
     command: redis-server /etc/redis/redis.conf
     volumes:
       - ./redis-cluster-1.conf:/etc/redis/redis.conf
@@ -30,7 +30,7 @@ services:
         ipv4_address: 10.0.0.2
 
   redis-cluster-2:
-    image: redis:5
+    image: redis:6
     command: redis-server /etc/redis/redis.conf
     volumes:
       - ./redis-cluster-2.conf:/etc/redis/redis.conf
@@ -41,7 +41,7 @@ services:
         ipv4_address: 10.0.0.3
 
   redis-cluster-3:
-    image: redis:5
+    image: redis:6
     command: redis-server /etc/redis/redis.conf
     volumes:
       - ./redis-cluster-3.conf:/etc/redis/redis.conf
